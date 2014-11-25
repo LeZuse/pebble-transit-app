@@ -1,6 +1,7 @@
 var UI = require('ui');
 var ajax = require('ajax');
-
+var detailScreen = require('./detailScreen.js');
+var normalize = require('./utils.js').normalize;
 
 var errorMessage = function(err) {
   var card = new UI.Card({
@@ -8,10 +9,6 @@ var errorMessage = function(err) {
   });
   card.body('Msg:' + error);
   card.show();
-};
-
-var normalize = function(s) {
-  return s.replace(/[ěé]/gi,'e').replace(/š/gi,'s').replace(/č/gi,'c').replace(/ř/gi,'r').replace(/ž/gi,'z').replace(/ý/gi,'y').replace(/á/gi,'a').replace(/í/gi,'i');
 };
 
 var travelModeTag = function(steps) {
@@ -43,21 +40,19 @@ module.exports = function(journey) {
       }
       var list = new UI.Menu({
         sections: [{
-          title: 'Namesti Miru > Marjanka',
+          title: journey.from + ' > ' + journey.to,
           items: opts
         }]
       });
       var index = 0;
-      list.on('down', function(e) {
-        index++;
-        console.log(index);
-      });
-      list.on('up', function(e) {
-        index--;
+      list.on('click', function(e) {
+        // index++;
+        console.log('c');
         console.log(index);
       });
       list.on('select', function(e) {
-        console.log(e);
+        console.log(e.itemIndex);
+        detailScreen(data.routes[e.itemIndex]);
       });
       list.show();
     },
