@@ -1,6 +1,7 @@
 var UI = require('ui');
 var Vector2 = require('vector2');
 var ajax = require('ajax');
+require('./settingsConfig.js');
 
 // var normalizePrice = function(p) {
 //   return p.replace(' ', '').replace('Kč', 'Kc').replace('ě', 'e');
@@ -29,7 +30,9 @@ var normalize = function(s) {
 var travelModeTag = function(steps) {
   var tag = '';
   for (var i = 0, j = steps.length; i < j; ++ i) {
-    tag += steps[i].travel_mode[0]; // get first letter for every step
+    var t = steps[i].travel_mode[0]; // get first letter for every step
+    tag += t;
+    if (t === 'T') tag += steps[i].transit_details.line.short_name;
   }
   return tag;
 };
@@ -63,7 +66,7 @@ var transitScreen = function(journey) {
   var from = encodeURIComponent(journey.from + ',' + journey.location);
   var to = encodeURIComponent(journey.to + ',' + journey.location);
   var url = 'https://maps.googleapis.com/maps/api/directions/json?origin='+from+'&destination='+to+
-    '&mode=transit&departure_time=now&alternatives=true';
+    '&mode=transit&departure_time=now&alternatives=true&language=en-gb'; // alternatives for a list; language for time formatting
   console.log(url);
   ajax({ 'url': url, 'type': 'json' },
     function(data) {
@@ -72,7 +75,7 @@ var transitScreen = function(journey) {
       for (var i = 0, j = data.routes.length; i < j; ++ i) {
         console.log('steps: '+data.routes[i].legs.length);
         opts.push({
-          title: data.routes[i].legs[0].departure_time.text + ' > '+ travelModeTag(data.routes[i].legs[0].steps),
+          title: data.routes[i].legs[0].departure_time.text + ' ' + travelModeTag(data.routes[i].legs[0].steps),
           subtitle: normalize(data.routes[i].legs[0].steps[0].html_instructions)
         });
       }
