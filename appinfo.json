@@ -1,10 +1,10 @@
 {
-  "uuid": "133215f0-cf20-4c05-997b-3c9be5a64e5b",
-  "shortName": "Pebble.js",
-  "longName": "Pebble.js",
-  "companyName": "Meiguro",
+  "uuid": "4CBD72EE-C751-4715-A048-6BB6C8C8D59E",
+  "shortName": "Transit",
+  "longName": "Transit (Google Maps)",
+  "companyName": "Zuse Corp",
   "versionCode": 1,
-  "versionLabel": "0.4",
+  "versionLabel": "0.1",
   "capabilities": [ "configurable" ],
   "watchapp": {
     "watchface": false
