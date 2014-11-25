@@ -3,7 +3,7 @@ var ajax = require('ajax');
 var detailScreen = require('./detailScreen.js');
 var normalize = require('./utils.js').normalize;
 
-var errorMessage = function(err) {
+var errorMessage = function(error) {
   var card = new UI.Card({
     title: 'Error'
   });
