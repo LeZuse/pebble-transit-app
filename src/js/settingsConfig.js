@@ -13,3 +13,13 @@ Settings.config(
     console.log('closed configurable');
   }
 );
+
+
+var config = {
+  journeys: [
+  {name: 'Work > home', from: 'Namesti Miru', to: 'Marjanka', location: 'Praha'},
+  {name: 'Home > work', to: 'Namesti Miru', from: 'Marjanka', location: 'Praha'}
+  ]
+};
+
+Settings.option('journeys', config.journeys);

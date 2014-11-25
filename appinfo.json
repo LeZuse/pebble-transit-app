@@ -2,7 +2,7 @@
   "uuid": "4CBD72EE-C751-4715-A048-6BB6C8C8D59E",
   "shortName": "Transit",
   "longName": "Transit (Google Maps)",
-  "companyName": "Zuse Corp",
+  "companyName": "Zuse Labs",
   "versionCode": 1,
   "versionLabel": "0.1",
   "capabilities": [ "configurable" ],
